@@ -11,7 +11,7 @@ namespace NZWalks.API.Repositories
         
         public async Task<List<Regions>> GetAllRegionAsync()
         {
-            List<Regions> regionList = new List<Regions>
+            return new List<Regions>
             {
                 new Regions
                 {
@@ -42,7 +42,7 @@ namespace NZWalks.API.Repositories
                     RegionImageUrl = ""
                 },
             };
-            return regionList;
+            
         }
 
         Task<Regions?> IRegionRepositories.GetRegionsByIDAsync(Guid Id)
