@@ -16,6 +16,7 @@ builder.Services.AddDbContext<NZWalksDbContext>(options => options.UseSqlServer(
 
 //injecting serverbased repositories
 builder.Services.AddScoped<IRegionRepositories, RegionRepository>();
+builder.Services.AddScoped<IWalkRepositories, WalkRepository>();
 //injecting inmemorybased repository
 //builder.Services.AddScoped<IRegionRepositories, InMemoryRegionRepository>();
 
