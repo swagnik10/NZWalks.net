@@ -11,6 +11,7 @@ namespace NZWalks.API.Repositories
         public RegionRepository(NZWalksDbContext nzWalksDbContext)
         {
             this.nzWalksDbContext = nzWalksDbContext;
+            Console.WriteLine("Happy Coding!!!!");
         }
         //Implementations
         public async Task<List<Regions>> GetAllRegionAsync()
