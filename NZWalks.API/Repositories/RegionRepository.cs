@@ -55,6 +55,7 @@ namespace NZWalks.API.Repositories
             {
                  nzWalksDbContext.Remove(requiredRegion);
                 await nzWalksDbContext.SaveChangesAsync();
+                Console.WriteLine("Hi!!!!");
                 return requiredRegion;
             }
             return null;
