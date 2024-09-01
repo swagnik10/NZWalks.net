@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.CustomActionFilter;
 using NZWalks.API.Data;
@@ -11,6 +12,7 @@ namespace NZWalks.API.Controllers
     // https://localhost:7090/api/regions
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly NZWalksDbContext dbContext;
@@ -28,6 +30,7 @@ namespace NZWalks.API.Controllers
         // GET: https://localhost:port_Number/api/regions
         //Route Attribute
         [HttpGet]
+        [Authorize(Roles = "Reader")]
         public  async Task<IActionResult> GetAllRegion()
         {
             //HardCoded Data
@@ -88,6 +91,7 @@ namespace NZWalks.API.Controllers
         //Get Region By Id
         //GET: https://localhost:port_Number/api/regions/{id}
         [HttpGet("{id:Guid}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetRegionById([FromRoute] Guid id)
         {
             //Regions region = dbContext.Regions.SingleOrDefault(r => r.Id == id);
@@ -116,8 +120,10 @@ namespace NZWalks.API.Controllers
         //Post to Create New Region
         //Post: https://localhost:port_Number/api/Regions
         [HttpPost]
+        [Authorize(Roles = "Writer")]
         //Custom Model validator
         [ValidateModel]
+        
         public async Task<IActionResult> InsertRegion([FromBody] AddRegionRequestDTO addRegionRequestDTO)
         {
             //Converting DTO to Domain model
@@ -157,6 +163,7 @@ namespace NZWalks.API.Controllers
         [Route("{id:Guid}")]
         //Custom Model Validator
         [ValidateModel]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> UpdateRegion([FromRoute] Guid Id, [FromBody] AddRegionRequestDTO addRegionRequestDTO)
         {
             //Searching the id in Domain Model
@@ -199,6 +206,7 @@ namespace NZWalks.API.Controllers
         //Delete Region
         //Delete: https://localhost:Port_Number/api/Regions?id="wgewrhwgq"
         [HttpDelete]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteRegion([FromQuery] Guid Id)
         {
             //Regions regions = dbContext.Regions.FirstOrDefault(x => x.Id == Id);

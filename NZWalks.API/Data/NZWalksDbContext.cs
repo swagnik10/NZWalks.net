@@ -6,7 +6,7 @@ namespace NZWalks.API.Data
     public class NZWalksDbContext : DbContext
     {
         //constructor shortcut type ctor then enter
-        public NZWalksDbContext(DbContextOptions dbContextOptions): base(dbContextOptions)
+        public NZWalksDbContext(DbContextOptions<NZWalksDbContext> dbContextOptions): base(dbContextOptions)
         {
             
         }
